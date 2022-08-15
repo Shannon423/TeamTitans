@@ -1,5 +1,5 @@
 # TeamTitans
-###Sprint 2
+## Sprint 2
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -24,29 +24,29 @@ Age = df.groupby('Age').size()
 df.describe()
 print(df.corr())
 
-#Correlation of Columns using Heatmap
+# Correlation of Columns using Heatmap
 f,ax = plt.subplots(figsize=(10, 10))
 plt.title('Correlation of Columns using Heatmap')
 sns.heatmap(df.corr(), annot=True, cmap="YlGnBu", linewidth=0.5, linecolor="black", fmt= '.2f', ax=ax)
 
-#Correlation of Net Sales and Duration by using Scatterplot
+# Correlation of Net Sales and Duration by using Scatterplot
 f,ax = plt.subplots(figsize=(10, 10))
 plt.title('Correlation of Net Sales and Duration by using Scatterplot')
 sns.scatterplot(x="Duration", y="Net Sales", data= df, color='green')
 plt.axhline(0, c='black', ls='--')
 
 
-#Correlation of Duration and Age by using Scatterplot
+# Correlation of Duration and Age by using Scatterplot
 f,ax = plt.subplots(figsize=(10, 10))
 plt.title('Correlation of Duration and Age by using Scatterplot')
 sns.scatterplot(x="Duration", y="Age", data= df, color = '#228B22')
 
-#Pairplot by grouping as Agency Type
+# Pairplot by grouping as Agency Type
 sns.set(style = "ticks")
 sns.pairplot(df, hue = "Agency Type", palette= ['r','g'])
 
 
-#Correlation of Net Sales and Commision (in value) by grouping of Agency Type
+# Correlation of Net Sales and Commision (in value) by grouping of Agency Type
 f,ax = plt.subplots(figsize=(10, 10))
 plt.title('Correlation of Net Sales and Commision (in value) by grouping of Agency Type using Scatterplot')
 sns.scatterplot(x="Commision (in value)", y="Net Sales", data= df, hue='Agency Type',palette = ['#e41a1c','#377eb8'])
@@ -56,10 +56,10 @@ sns.lmplot(x="Commision (in value)", y="Net Sales", data= df, hue='Agency Type',
 plt.title('Correlation of Net Sales and Commision (in value) by grouping of Agency Type using Line Plot')
 plt.axhline(0, c='black', ls='--')
 
-#Correlation of the Net Sales and Commision (in value)
+# Correlation of the Net Sales and Commision (in value)
 df.groupby('Agency Type')[['Net Sales','Commision (in value)']].corr()
 
-#The Distribution plot by Age
+# The Distribution plot by Age
 
 distPlot = sns.distplot(df['Age'], color ='#4daf4a')
 plt.title("The Distribution plot of Age")
@@ -72,7 +72,7 @@ sns.violinplot(x = "Agency Type", y = "Net Sales", data = df, palette =['#e41a1c
 plt.axhline(0, c='black', ls='--')
 
 
-#Box plot of Commision according to age categories
+# Box plot of Commision according to age categories
 df['age_bins'] = pd.cut(df['Age'], bins = [0, 20, 40, 60, 80, 100, 120])
 
 plt.figure(figsize=(12,4))
@@ -84,14 +84,14 @@ plt.ylabel('Commision (in value)',size=18)
 plt.xlabel('Age',size=18)
 
 
-#Lineplot of Age and Net Sales
+# Lineplot of Age and Net Sales
 f,ax = plt.subplots(figsize=(10, 10))
 plt.title('Line Plot of Net Sales with Age (years)')
 sns.lineplot(x="Age", y='Net Sales',data = df, color='#4daf4a' )
 plt.show()
 
 
-###Sprint 3
+## Sprint 3
 ## Missing Value Treatment
 ### Determine which column has missing values
 print(df.isnull().sum())
@@ -257,8 +257,8 @@ print(modified_df)
 
 plt.show()
 
-###Sprint 4
-##Train and Test Sprint (based on Commission to other variables)
+### Sprint 4
+## Train and Test Sprint (based on Commission to other variables)
 #input dataframe y
 y_data = df['Commision (in value)']
 
@@ -315,7 +315,7 @@ lre.fit(x_test[['Age']], y_test)
 f = lre.score(x_train[['Age']], y_train)
 print(f)
 
-###Module Development
+## Module Development
 Z = df[['Duration', 'Net Sales', 'Age']]
 lre.fit(Z, df['Commision (in value)'])
 print(lre.intercept_)
@@ -324,10 +324,10 @@ print(lre.coef_)
 #Commision = -6.449592910116424 + 0.01586273 x Duration + 0.24843086 x Net Sales + 0.13424185 x Age
 
 ##Multiple Linear Regression
-# fit the model 
+#fit the model 
 lre.fit(Z, df['Commision (in value)'])
 
-# Find the R^2
+#Find the R^2
 print('The R-square is: ', lre.score(Z, df['Commision (in value)']))
 #We can say that ~ 43.84 % of the variation of commision is explained by this multiple linear regression
 
@@ -337,7 +337,7 @@ Y_predict_multifit = lre.predict(Z)
 print('The mean square error of commision and predicted value using multifit is: ', \
       mean_squared_error(df['Commision (in value)'], Y_predict_multifit))
       
-###Sprint 5
+### Sprint 5
 # Pivot Tables
 ## Pivot Table 1 (Claim frequency of each agency)
 ![](Images/PivotTable1.png)
